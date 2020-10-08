@@ -2,44 +2,44 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const courseSchema = new Schema({
-    Name: {
+    name: {
         type: String,
         required: [true, 'Course must have a name']
     },
-    Summary: {
+    summary: {
         type: String,
         required: [true, 'Course must have a summary']
     },
-    Description: {
+    description: {
         type: String,
         required: [true, 'Course must have a description']
     },
-    Category: {
+    category: {
         type: String,
         required: [true, 'Course must have a category']
     },
-    Difficulty: {
+    difficulty: {
         type: String,
-        enum: ['Beginner', 'Middle', 'Advanced'],
+        enum: ['beginner', 'middle', 'advanced'],
         required: [true, 'Course must have a difficulty']
     },
-    Rating: {
+    rating: {
         type: Number,
         min: 0,
         max: 5,
         default: 0
     },
-    AmountEnrolled: {
+    amountEnrolled: {
         type: Number,
         min: 0,
         default: 0
     },
-    AmountRated: {
+    amountRated: {
         type: Number,
         min: 0,
         default: 0
     },
-    Picture: {
+    picture: {
         type: String,
         default: 'no-picture'
     }
