@@ -10,7 +10,7 @@ router.route('/')
 
 router.get('/categories', async (req, res, next) => {
     const categories = await Course.aggregate([{ $group: { _id: '$category' } }]);
-
+    
     res.status(200).json({
         status: 'success',
         data: {
