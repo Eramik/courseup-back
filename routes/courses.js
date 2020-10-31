@@ -19,7 +19,7 @@ router.get('/categories', async (req, res, next) => {
     });
 });
 
-router.route('/:courseId')
+router.route('/:id')
     .get(coursesController.getSingleCourse)
     .patch(coursesController.updateCourse)
     .delete(coursesController.deleteCourse);

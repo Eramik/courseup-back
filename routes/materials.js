@@ -1,29 +1,31 @@
 const express = require('express');
 const TextMaterial = require('../models/TextMaterial');
+const controllerFactory = require('../controllers/controllersFactory');
+const videosController = require('../controllers/videosController');
 
 const router = express.Router();
 
-router.route('/text')
-    .get(async (req, res, next) => {
-        const textMaterials = await TextMaterial.find();
+// TEXT MATERIALS
+router
+    .route('/text')
+    .get(controllerFactory.getAll(TextMaterial))
+    .post(controllerFactory.createOne(TextMaterial));
+router
+    .route('/text/:id')
+    .patch(controllerFactory.updateOne(TextMaterial))
+    .delete(controllerFactory.deleteOne(TextMaterial));
 
-        res.status(200).json({
-            status: 'success',
-            data: {
-                textMaterials
-            }
-        });
-    })
-    .post(async (req, res, next) => {
-        const result = await TextMaterial.create(req.body);
+// VIDEO MATERIALS
+router
+    .route('/video')
+    .get(videosController.getAllVideos)
+    .post(videosController.createVideo);
+router
+    .route('/video/:id')
+    .get(videosController.getSingleVideo)
+    .patch(videosController.updateVideo)
+    .delete(videosController.deleteVideo);
 
-        res.status(200).json({
-            status: 'success',
-            message: 'text material created successfully',
-            data: {
-                result
-            }
-        });
-    });
+router.get('/video/:id/stream', videosController.streamVideo);
 
 module.exports = router;
