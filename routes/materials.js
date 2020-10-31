@@ -1,31 +1,41 @@
 const express = require('express');
-const TextMaterial = require('../models/TextMaterial');
-const controllerFactory = require('../controllers/controllersFactory');
-const videosController = require('../controllers/videosController');
+const materialsController = require('../controllers/materialsController');
 
 const router = express.Router();
 
 // TEXT MATERIALS
 router
     .route('/text')
-    .get(controllerFactory.getAll(TextMaterial))
-    .post(controllerFactory.createOne(TextMaterial));
+    .get(materialsController.getAllTextMaterials)
+    .post(materialsController.createTextMaterial);
 router
     .route('/text/:id')
-    .patch(controllerFactory.updateOne(TextMaterial))
-    .delete(controllerFactory.deleteOne(TextMaterial));
+    .get(materialsController.getSingleTextMaterial)
+    .patch(materialsController.updateTextMaterial)
+    .delete(materialsController.deleteTextMaterial);
 
 // VIDEO MATERIALS
 router
     .route('/video')
-    .get(videosController.getAllVideos)
-    .post(videosController.createVideo);
+    .get(materialsController.getAllVideos)
+    .post(materialsController.createVideo);
 router
     .route('/video/:id')
-    .get(videosController.getSingleVideo)
-    .patch(videosController.updateVideo)
-    .delete(videosController.deleteVideo);
+    .get(materialsController.getSingleVideo)
+    .patch(materialsController.updateVideo)
+    .delete(materialsController.deleteVideo);
 
-router.get('/video/:id/stream', videosController.streamVideo);
+router.get('/video/:id/stream', materialsController.streamVideo);
+
+// TEST MATERIALS
+router
+    .route('/tests')
+    .get(materialsController.getAllTests)
+    .post(materialsController.createTest);
+router
+    .route('/tests/:id')
+    .get(materialsController.getSingleTest)
+    .patch(materialsController.updateTest)
+    .delete(materialsController.deleteTest);
 
 module.exports = router;
