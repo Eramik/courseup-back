@@ -31,8 +31,8 @@ const courseSchema = new Schema({
     },
     materials: {
         texts: [{ type: Schema.Types.ObjectId, ref: 'TextMaterial' }],
-        videos: [{ type: Schema.Types.ObjectId, ref: 'Video'}],
-        tests: [{ type: Schema.Types.ObjectId }]
+        videos: [{ type: Schema.Types.ObjectId, ref: 'Video' }],
+        tests: [{ type: Schema.Types.ObjectId, ref: 'Test' }]
     },
     amountEnrolled: {
         type: Number,

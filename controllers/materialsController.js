@@ -1,7 +1,19 @@
 const fs = require('fs');
-const Video = require('../models/Video');
 const controllersFactory = require('./controllersFactory');
 
+// db models
+const TextMaterial = require('../models/TextMaterial');
+const Video = require('../models/Video');
+const Test = require('../models/Test');
+
+// TEXT MATERIALS
+exports.getAllTextMaterials = controllersFactory.getAll(TextMaterial);
+exports.getSingleTextMaterial = controllersFactory.getOne(TextMaterial);
+exports.createTextMaterial = controllersFactory.createOne(TextMaterial);
+exports.updateTextMaterial = controllersFactory.updateOne(TextMaterial);
+exports.deleteTextMaterial = controllersFactory.deleteOne(TextMaterial);
+
+// VIDEO MATERIALS
 exports.getAllVideos = controllersFactory.getAll(Video);
 exports.getSingleVideo = controllersFactory.getOne(Video);
 exports.createVideo = controllersFactory.createOne(Video);
@@ -47,3 +59,10 @@ exports.streamVideo = async (req, res, next) => {
         fs.createReadStream(path).pipe(res);
     }
 };
+
+// TEST MATERIALS
+exports.getAllTests = controllersFactory.getAll(Test);
+exports.getSingleTest = controllersFactory.getOne(Test);
+exports.createTest = controllersFactory.createOne(Test);
+exports.updateTest = controllersFactory.updateOne(Test);
+exports.deleteTest = controllersFactory.deleteOne(Test);
