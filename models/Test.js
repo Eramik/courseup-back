@@ -31,7 +31,7 @@ const testSchema = new Schema({
 testSchema.post('save', async function (doc, next) {
     const referencedCouse = await Course.findById(doc.courseId);
 
-    referencedCouse.materials.videos.push(doc._id);
+    referencedCouse.materials.tests.push(doc._id);
     referencedCouse.markModified('materials');
     await referencedCouse.save();
 
