@@ -1,7 +1,7 @@
 const Review = require('../models/Review');
 const controllersFactory = require('./controllersFactory');
 
-exports.getAllReviews = async (req, res, next) => {
+exports.leaveReview = async (req, res, next) => {
     const { userId, courseId, review, rating } = req.body;
     const reviewDoc = await Review.create({
         userId,
@@ -15,7 +15,8 @@ exports.getAllReviews = async (req, res, next) => {
         data: { review: reviewDoc }
     });
 };
-exports.leaveReview = async (req, res, next) => {
+
+exports.getAllReviews = async (req, res, next) => {
     const query = {};
     if (req.query.courseId) {
         query.courseId = req.query.courseId;
@@ -28,6 +29,7 @@ exports.leaveReview = async (req, res, next) => {
         data: { docs }
     });
 };
+
 exports.getSingleReview = controllersFactory.getOne(Review);
 exports.addReview = controllersFactory.createOne(Review);
 exports.updateReview = controllersFactory.updateOne(Review);
