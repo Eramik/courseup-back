@@ -2,21 +2,6 @@ const Topic = require('../models/Topic');
 const Reply = require('../models/Reply');
 const controllersFactory = require('./controllersFactory');
 
-exports.leaveReview = async (req, res, next) => {
-    const { userId, courseId, review, rating } = req.body;
-    const reviewDoc = await Review.create({
-        userId,
-        courseId,
-        review,
-        rating
-    });
-
-    res.status(200).json({
-        status: 'success',
-        data: { review: reviewDoc }
-    });
-};
-
 exports.getAllTopics = async (req, res, next) => {
     const query = {};
     if (req.query.courseId) {
