@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const controllersFactory = require('../controllers/controllersFactory');
 const sendError = require('../utils/sendError');
 
 exports.enrollCourse = async (req, res) => {
@@ -30,3 +31,5 @@ exports.enrollCourse = async (req, res) => {
         message: 'Succesfully enrolled course',
     });
 };
+
+exports.updateUser = controllersFactory.updateOne(User);

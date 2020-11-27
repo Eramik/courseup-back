@@ -11,6 +11,7 @@ router.post('/login', authController.login);
 // Enroll course
 router.post('/enroll-course',authController.verifyAccess, userController.enrollCourse);
 
-// Leave actions for the usual CRUD user operations
+router.patch('/:id', userController.updateUser);
+
 
 module.exports = router;

@@ -21,7 +21,11 @@ exports.getAllReviews = async (req, res, next) => {
     if (req.query.courseId) {
         query.courseId = req.query.courseId;
     }
-    const docs = await Review.find(query);
+
+    let dbQuery = Review.find(query);
+    dbQuery = dbQuery.populate('courseId').populate('userId');
+
+    const docs = await dbQuery;
 
     res.status(200).json({
         status: 'success',
