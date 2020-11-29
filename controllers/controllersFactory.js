@@ -17,7 +17,9 @@ exports.getOne = (Model, populateOptions) => {
         let query = Model.findById(req.params.id);
 
         if (populateOptions) {
-            query = query.populate(populateOptions);
+            for (const option of populateOptions) {
+                query = query.populate(option);
+            }
         } else if (Model.modelName === 'Course') {
             const { textPopulate, videosPopulate, testsPopulate } = req.query;
 

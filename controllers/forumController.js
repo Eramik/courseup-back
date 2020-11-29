@@ -4,10 +4,12 @@ const controllersFactory = require('./controllersFactory');
 
 exports.getAllTopics = async (req, res, next) => {
     const query = {};
+
     if (req.query.courseId) {
         query.courseId = req.query.courseId;
     }
-    const docs = await Topic.find(query);
+
+    const docs = await (Topic.find(query).populate('courseId').populate('userId'));
 
     res.status(200).json({
         status: 'success',
@@ -16,7 +18,7 @@ exports.getAllTopics = async (req, res, next) => {
     });
 };
 
-exports.getSingleTopic = controllersFactory.getOne(Topic);
+exports.getSingleTopic = controllersFactory.getOne(Topic, ['courseId', 'userId']);
 exports.addTopic = controllersFactory.createOne(Topic);
 exports.updateTopic = controllersFactory.updateOne(Topic);
 exports.deleteTopic = controllersFactory.deleteOne(Topic);
@@ -26,7 +28,7 @@ exports.getAllReplies = async (req, res, next) => {
     if (req.query.topicId) {
         query.topicId = req.query.topicId;
     }
-    const docs = await Reply.find(query);
+    const docs = await (Reply.find(query).populate('userId'));
 
     res.status(200).json({
         status: 'success',
